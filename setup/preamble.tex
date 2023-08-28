@@ -1,0 +1,235 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Language, Encoding and Fonts
+% http://en.wikibooks.org/wiki/LaTeX/Internationalization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Select encoding of your inputs. Depends on
+% your operating system and its default input
+% encoding. Typically, you should use
+%   Linux  : utf8 (most modern Linux distributions)
+%            latin1 
+%   Windows: ansinew
+%            latin1 (works in most cases)
+%   Mac    : applemac
+% Notice that you can manually change the input
+% encoding of your files by selecting "save as"
+% an select the desired input encoding. 
+\usepackage[utf8]{inputenc}
+% Make latex understand and use the typographic
+% rules of the language used in the document.
+\usepackage[danish,english]{babel}
+% Use the palatino font
+\frenchspacing
+\usepackage[sc]{mathpazo}
+\linespread{1.05}         % Palatino needs more leading (space between lines)
+% Choose the font encoding
+\usepackage[T1]{fontenc}
+%Symbol dictionary package(used for tick symbol)
+\usepackage{bbding}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Graphics and Tables
+% http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
+% http://en.wikibooks.org/wiki/LaTeX/Tables
+% http://en.wikibooks.org/wiki/LaTeX/Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% load a colour package
+\usepackage[dvipsnames]{xcolor}
+\definecolor{aaublue}{RGB}{33,26,82}% dark blue
+% The standard graphics inclusion package
+\usepackage{graphicx}
+% Set up how figure and table captions are displayed
+\usepackage{subcaption}
+\usepackage{caption}
+\captionsetup{%
+  font=footnotesize,% set font size to footnotesize
+  labelfont=bf % bold label (e.g., Figure 3.2) font
+}
+% Make the standard latex tables look so much better
+\usepackage{array,booktabs,tabularx,multirow}
+% Enable the use of frames around, e.g., theorems
+% The framed package is used in the example environment
+\usepackage{framed}
+
+\usepackage{silence}
+\WarningsOff[everypage]% Suppress warnings related to package everypage
+% Adds support for full page background picture
+% COMMENT THIS IN, BEFORE SUBMITTING FOR BACKGROUND ON FRONT PAGE
+\usepackage[contents={},color=gray]{background}
+% \usepackage[contents=draft,color=gray]{background}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematics
+% http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Defines new environments such as equation,
+% align and split 
+\usepackage{mathtools}
+% Adds new math symbols
+\usepackage{amssymb}
+\usepackage{amsmath}
+% Use theorems in your document
+% The ntheorem package is also used for the example environment
+% When using thmmarks, amsmath must be an option as well. Otherwise \eqref doesn't work anymore.
+\usepackage[framed,amsmath,thmmarks]{ntheorem}
+
+\usepackage{ circuitikz }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page Layout
+% http://en.wikibooks.org/wiki/LaTeX/Page_Layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change margins, papersize, etc of the document
+\usepackage[
+  inner=28mm,% left margin on an odd page
+  outer=41mm,% right margin on an odd page
+  headheight=13.6pt,
+  bottom=39mm
+  ]{geometry}
+% Modify how \chapter, \section, etc. look
+% The titlesec package is very configureable
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat*{\section}{\normalfont\Large\bfseries}
+\titleformat*{\subsection}{\normalfont\large\bfseries}
+\titleformat*{\subsubsection}{\normalfont\normalsize\bfseries}
+% \titleformat*{\paragraph}{\normalfont\normalsize\bfseries}
+% \titleformat*{\subparagraph}{\normalfont\normalsize\bfseries}
+
+% Clear empty pages between chapters
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+  \clearpage
+  {\pagestyle{empty}\origdoublepage}%
+}
+\let\cleardoublepage\clearemptydoublepage
+
+% Change the headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %delete everything
+\renewcommand{\headrulewidth}{0pt} %remove the horizontal line in the header
+\fancyhead[RE]{\small\nouppercase\leftmark} %even page - chapter title
+\fancyhead[LO]{\small\nouppercase\rightmark} %uneven page - section title
+\fancyhead[LE,RO]{\thepage \hspace{1pt} of \pageref{LastPage}} %page number on all pages
+% Do not stretch the content of a page. Instead,
+% insert white space at the bottom of the page
+\raggedbottom
+% Enable arithmetics with length. Useful when
+% typesetting the layout.
+\usepackage{calc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+% http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber,
+  bibencoding=utf8,
+  maxbibnames=20,
+  style=numeric-comp,
+%   style=alphabetic,
+  sorting=none
+  ]{biblatex}
+\addbibresource{bib/mybib.bib}
+\usepackage{microtype} %Prevent overfull issues in bibliography
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add bibliography and index to the table of
+% contents
+\usepackage[nottoc]{tocbibind}
+% Add the command \pageref{LastPage} which refers to the
+% page number of the last page
+\usepackage{lastpage}
+% Add todo notes in the margin of the document
+\usepackage[
+%  disable, %turn off todonotes
+  colorinlistoftodos, %enable a coloured square in the list of todos
+  textwidth=\marginparwidth, %set the width of the todonotes
+  textsize=scriptsize, %size of the text in the todonotes
+  ]{todonotes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code listings and pseudocode
+\usepackage[newfloat]{minted}
+\setminted[js]{frame=topline, framesep=6pt, style=colorful, fontsize=\footnotesize, linenos, breaklines, autogobble}
+\setminted[rust]{frame=topline, framesep=6pt, style=colorful, fontsize=\footnotesize, linenos, breaklines, autogobble}
+% \setminted[text]{frame=topline, framesep=6pt, fontsize=\footnotesize, linenos, breaklines, autogobble}
+% \usepackage{clrscode3e}
+% \DeclareFloatingEnvironment[name=Algorithm, placement=htp!]{algorithm} %Create Algorithm float
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hyperlinks
+% http://en.wikibooks.org/wiki/LaTeX/Hyperlinks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Enable hyperlinks and insert info into the pdf
+% file. Hypperref should be loaded as one of the 
+% last packages
+\usepackage[hidelinks]{hyperref}
+% \usepackage{hyperref}
+\hypersetup{%
+	plainpages=false,%
+	pdfauthor={Armin Majidivash,
+    Aske Klitgaard Ottesen,
+	Jens Tinggaard,
+	Martin Holst Enevoldsen,
+	Max Nødskov Møller,
+    Mikkel Bækgaard Jørgensen,
+    Thomas Matre Thorsen},%
+	pdftitle={P2},%
+	pdfsubject={Browser-based Grid Computing},%
+	bookmarksnumbered=true,%
+ 	colorlinks=false,%
+	citecolor=black,%
+	filecolor=black,%
+	linkcolor=black,% you should probably change this to black before printing
+	urlcolor=black,%
+	pdfstartview=FitH%
+}
+
+\usepackage[acronym]{glossaries} %Glossaries/acronyms
+\usepackage[autostyle, threshold=0]{csquotes} %better quotes
+
+% \usepackage{svg}
+\usepackage[normalem]{ulem} %strikeout
+
+% nested enumeration gives 1.1 numbering
+\usepackage{enumitem}
+% \renewcommand{\labelenumii}{\theenumii}
+% \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+
+%Tikz%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+\usepackage{tikz}
+% \usetikzlibrary{calc,patterns,arrows,arrows.meta}
+
+\usetikzlibrary{arrows.meta, positioning, calc, shadings, shapes}
+
+
+\usepackage{verbatim}
+
+\usepackage[page, titletoc]{appendix} % appendicies
+
+%package, that makes it possible to comment out entire passages is \being{comment} - \end{comment}
+
+\usepackage{pdfpages}
+
+
+\newcounter{Rev} % Revision counter
+\setcounter{Rev}{13} % Set the revision counter to the number of the current revision
+
+% Add text to the document: \add{Revision number}{text} - Text will be blue in the revision and black in other revisions.
+\newcommand{\add}[2]{\protect\ifthenelse{#1=\value{Rev}}{\textcolor{blue}{#2}}{#2}}
+
+% Remove text to the document: \rmv{Revision number}{text} - Text will be red and strikethrough in the revision and removed from other revisions.
+\newcommand{\rmv}[2]{\protect\ifthenelse{#1=\value{Rev}}{\textcolor{red}{\sout{#2}}}{}}
+
+% For changing text: \change{Revision number}{text1}{text2} - Equal to \rmv{Revision number}{text1} \add{Revision number}{text2}.
+\newcommand{\change}[3]{\protect\ifthenelse{#1=\value{Rev}}{\textcolor{red}{\sout{#2}} \textcolor{blue}{#3}}{#3}}
+
+% For modifying code blocks like figures or tables where the \add and \rem commands do not work: \changecode{Revision number}{text1}{text2} - Text1 will be used in the revision and text2 is used in other revisions.
+\newcommand{\changecode}[3]{\protect\ifthenelse{#1=\value{Rev}}{#2}{#3}}

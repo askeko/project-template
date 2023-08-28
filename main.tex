@@ -1,0 +1,39 @@
+\documentclass[11pt,twoside,a4paper,openright]{report}
+\input{setup/preamble.tex}
+\input{setup/hyphenations.tex}
+\input{setup/macros.tex}
+
+%import glossaries
+% \makeglossaries
+% \loadglsentries{setup/acronyms.tex}
+\usepackage{float}
+\begin{document}
+%frontmatter
+\pagestyle{empty} %disable headers and footers
+\pagenumbering{roman} %use roman page numbering in the frontmatter
+\input{specials/frontpage.tex}
+\input{specials/colophon.tex}
+\input{specials/titlepages.tex}
+\cleardoublepage
+
+\pdfbookmark[0]{Contents}{label:contents}
+\setcounter{tocdepth}{1} %determine depth of table of contents. 0 - 4
+\tableofcontents
+
+% \input{specials/preface.tex}
+% \cleardoublepage
+
+
+% studeordning https://moduler.aau.dk/course/2022-2023/DNSDATFB220
+%mainmatter
+
+\input{chapters/introduction}
+
+\appendix
+\input{chapters/appendix/temp}
+
+%backmatter
+% \printglossaries
+\printbibliography[heading=bibintoc]\label{bib:mybiblio}
+
+\end{document}
